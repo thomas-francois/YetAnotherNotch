@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>YetAnotherNotch transcribes what you say in the Transcription tab. Audio is processed on your Mac by the built-in recogniser and is never sent anywhere.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>YetAnotherNotch uses the on-device speech recogniser to turn what you say into text in the Transcription tab.</string>
+</dict>
+</plist>
