@@ -15,7 +15,9 @@ struct LlamaChatResponder: ChatResponder {
 
     /// No system prompt: the Chat tab is a plain question box, and an invented persona would
     /// change answers for reasons the user never asked for.
-    func replyStream(to question: String) -> AsyncThrowingStream<String, Error> {
-        client.streamCompletion(model: model, systemPrompt: nil, userText: question)
+    func replyStream(to question: String, imageDataURL: String?) -> AsyncThrowingStream<String, Error> {
+        client.streamCompletion(
+            model: model, systemPrompt: nil, userText: question, imageDataURL: imageDataURL
+        )
     }
 }

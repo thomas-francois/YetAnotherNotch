@@ -19,6 +19,11 @@ final class ChatStore: ObservableObject {
     @Published private(set) var isSending = false
     @Published private(set) var errorMessage: String?
 
+    /// An image dropped on the notch, sent with the next question and then cleared. One at a
+    /// time: the notch has room to show one thumbnail, and a second drop replacing the first is
+    /// more predictable than a growing list nobody can see.
+    @Published private(set) var attachment: ChatAttachment?
+
     /// Overridable for previews and harnesses; `nil` means "resolve from the current model
     /// selection at submit time".
     private let overrideResponder: ChatResponder?
@@ -56,9 +61,14 @@ final class ChatStore: ObservableObject {
         errorMessage = nil
         response = ""
 
-        Task { [asked] in
+        // Captured now and cleared immediately: the image belongs to this question, and leaving
+        // it attached would silently send it again with the next one.
+        let imageDataURL = attachment?.dataURL
+        attachment = nil
+
+        Task { [asked, imageDataURL] in
             do {
-                for try await delta in responder.replyStream(to: asked) {
+                for try await delta in responder.replyStream(to: asked, imageDataURL: imageDataURL) {
                     // Appended as they arrive, so a slow first response shows progress
                     // rather than an empty box.
                     response += delta
@@ -82,9 +92,18 @@ final class ChatStore: ObservableObject {
         pasteboard.setString(response, forType: .string)
     }
 
+    func attach(_ attachment: ChatAttachment) {
+        self.attachment = attachment
+    }
+
+    func clearAttachment() {
+        attachment = nil
+    }
+
     func clear() {
         question = ""
         response = ""
         errorMessage = nil
+        attachment = nil
     }
 }

@@ -129,6 +129,28 @@ struct ChatTabView: View {
                     .help(model.id)
             }
 
+            if let attachment = store.attachment, let image = attachment.image {
+                // In this row rather than one of its own: the tab is 146 pt tall and the answer
+                // needs the height more than the thumbnail does.
+                HStack(spacing: 3) {
+                    Image(nsImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 18, height: 18)
+                        .clipShape(RoundedRectangle(cornerRadius: 3))
+
+                    Button {
+                        store.clearAttachment()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 9))
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .foregroundStyle(.tertiary)
+                    .help("Remove the attached image")
+                }
+            }
+
             Spacer(minLength: 0)
 
             if store.hasResponse {

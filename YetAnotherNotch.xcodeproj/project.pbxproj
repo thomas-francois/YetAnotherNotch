@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		014E16E50171CF1745299272 /* ChatAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0139A515107FD50820D87B /* ChatAttachment.swift */; };
 		097361E7D7148A2F9690184A /* NotchTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74715A3AA25691663C4130A6 /* NotchTabButton.swift */; };
 		0C8B563AD48CE557CC9B2FC3 /* AppLauncherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F150B8BF6CD4D9E007A4DEA6 /* AppLauncherView.swift */; };
 		111BEA512ECFBF7F0079DD4E /* MacroVisionKit in Frameworks */ = {isa = PBXBuildFile; productRef = 111BEA502ECFBF7F0079DD4E /* MacroVisionKit */; };
@@ -207,6 +208,7 @@
 		9F7E28509D493CFD9B32751F /* NotchTabBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotchTabBar.swift; sourceTree = "<group>"; };
 		A19353B8C4FFEAB7888B1136 /* NotchTabLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotchTabLayout.swift; sourceTree = "<group>"; };
 		AB423BC43332E40F33E8701E /* NotchTabPlaceholder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotchTabPlaceholder.swift; sourceTree = "<group>"; };
+		AF0139A515107FD50820D87B /* ChatAttachment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatAttachment.swift; sourceTree = "<group>"; };
 		B04B4EF4A14C401EAFC8B116 /* AppLauncherSlotView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppLauncherSlotView.swift; sourceTree = "<group>"; };
 		B10348D82C74E56000475897 /* ConditionalModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalModifier.swift; sourceTree = "<group>"; };
 		B17266DE2C64DFA00031BA0D /* BundleInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleInfos.swift; sourceTree = "<group>"; };
@@ -592,6 +594,7 @@
 				9B17B48DA985F24A233E4A86 /* ChatTabView.swift */,
 				09865EDD3DCCE1237F0C1EA1 /* ChatMarkdown.swift */,
 				788ADD42430A257585484324 /* ChatMarkdownText.swift */,
+				AF0139A515107FD50820D87B /* ChatAttachment.swift */,
 			);
 			name = Chat;
 			path = Chat;
@@ -858,6 +861,7 @@
 				625C9B4FCFB8EA5A20CA4364 /* ExternalDisplayStore.swift in Sources */,
 				5E80090CFA2FFBD00476099E /* BrightnessWidgetView.swift in Sources */,
 				5F53924FCD7630BD563F92F6 /* DimmingOverlay.swift in Sources */,
+				014E16E50171CF1745299272 /* ChatAttachment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
