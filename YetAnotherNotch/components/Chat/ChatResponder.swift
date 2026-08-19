@@ -11,7 +11,9 @@ import Foundation
 /// twenty seconds to load a model on the first request, and YetAnotherNotch no longer controls
 /// its idle-sleep setting. Without incremental output that is indistinguishable from a hang.
 protocol ChatResponder: Sendable {
-    func replyStream(to question: String) -> AsyncThrowingStream<String, Error>
+    /// `imageDataURL` is a `data:` URL rather than a richer attachment type, so this protocol
+    /// stays free of AppKit and keeps compiling in a standalone harness.
+    func replyStream(to question: String, imageDataURL: String?) -> AsyncThrowingStream<String, Error>
 }
 
 /// Placeholder used when no server is reachable or no model is selected.
@@ -24,7 +26,7 @@ struct StubChatResponder: ChatResponder {
     /// Simulated latency, so the sending state is actually observable.
     var latency: Duration = .milliseconds(400)
 
-    func replyStream(to question: String) -> AsyncThrowingStream<String, Error> {
+    func replyStream(to question: String, imageDataURL: String?) -> AsyncThrowingStream<String, Error> {
         AsyncThrowingStream { continuation in
             let task = Task { [latency] in
                 try? await Task.sleep(for: latency)

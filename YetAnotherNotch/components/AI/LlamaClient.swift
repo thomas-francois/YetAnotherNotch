@@ -58,9 +58,15 @@ struct LlamaClient: Sendable {
 
     /// Non-streaming, for prompt shortcuts: the answer goes to the clipboard, so there is
     /// nothing to show progressively.
-    func complete(model: String, systemPrompt: String?, userText: String) async throws -> String {
+    func complete(
+        model: String,
+        systemPrompt: String?,
+        userText: String,
+        imageDataURL: String? = nil
+    ) async throws -> String {
         let request = try completionRequest(
-            model: model, systemPrompt: systemPrompt, userText: userText, stream: false
+            model: model, systemPrompt: systemPrompt, userText: userText,
+            imageDataURL: imageDataURL, stream: false
         )
         let (data, response) = try await session.data(for: request)
         try Self.checkStatus(response, data: data)
@@ -79,13 +85,15 @@ struct LlamaClient: Sendable {
     func streamCompletion(
         model: String,
         systemPrompt: String?,
-        userText: String
+        userText: String,
+        imageDataURL: String? = nil
     ) -> AsyncThrowingStream<String, Error> {
         AsyncThrowingStream { continuation in
             let task = Task {
                 do {
                     let request = try completionRequest(
-                        model: model, systemPrompt: systemPrompt, userText: userText, stream: true
+                        model: model, systemPrompt: systemPrompt, userText: userText,
+                        imageDataURL: imageDataURL, stream: true
                     )
                     let (bytes, response) = try await session.bytes(for: request)
                     if let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
@@ -113,13 +121,26 @@ struct LlamaClient: Sendable {
         model: String,
         systemPrompt: String?,
         userText: String,
+        imageDataURL: String?,
         stream: Bool
     ) throws -> URLRequest {
-        var messages: [[String: String]] = []
+        var messages: [[String: Any]] = []
         if let systemPrompt, !systemPrompt.isEmpty {
             messages.append(["role": "system", "content": systemPrompt])
         }
-        messages.append(["role": "user", "content": userText])
+        if let imageDataURL {
+            // With an image, `content` becomes an array of parts instead of a string. Sending
+            // this to a server with no projector loaded is what `supportsVision` prevents.
+            messages.append([
+                "role": "user",
+                "content": [
+                    ["type": "text", "text": userText],
+                    ["type": "image_url", "image_url": ["url": imageDataURL]],
+                ],
+            ])
+        } else {
+            messages.append(["role": "user", "content": userText])
+        }
 
         var request = self.request("/v1/chat/completions")
         request.httpMethod = "POST"

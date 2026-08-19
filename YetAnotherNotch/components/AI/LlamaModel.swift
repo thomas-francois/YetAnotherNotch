@@ -34,6 +34,13 @@ struct LlamaModel: Identifiable, Equatable, Sendable {
     let status: Status
     let source: String?
 
+    /// Whether this model can be sent images.
+    ///
+    /// Comes from the server, not from the model's name: a vision-capable model still runs
+    /// text-only unless llama-server was given its `--mmproj` projector, and only the server
+    /// knows whether that happened.
+    let supportsVision: Bool
+
     /// Usable right now. A sleeping model counts: it wakes in about two seconds against
     /// twenty for a cold load.
     ///
@@ -51,6 +58,17 @@ struct LlamaModel: Identifiable, Equatable, Sendable {
 struct LlamaModelListResponse: Decodable {
     let data: [Entry]
 
+    /// llama-server answers this endpoint twice over: `data` is the OpenAI-compatible list and
+    /// carries `id` and `status`, while `models` is the Ollama-style list and is the only one
+    /// carrying `capabilities`. Neither alone is enough, so both are decoded and joined on the
+    /// path, which both use verbatim.
+    let capabilityEntries: [CapabilityEntry]?
+
+    enum CodingKeys: String, CodingKey {
+        case data
+        case capabilityEntries = "models"
+    }
+
     struct Entry: Decodable {
         let id: String
         let source: String?
@@ -61,12 +79,23 @@ struct LlamaModelListResponse: Decodable {
         }
     }
 
+    struct CapabilityEntry: Decodable {
+        let model: String?
+        let capabilities: [String]?
+    }
+
     var models: [LlamaModel] {
-        data.map {
+        let vision = Set(
+            (capabilityEntries ?? [])
+                .filter { $0.capabilities?.contains("multimodal") == true }
+                .compactMap(\.model)
+        )
+        return data.map {
             LlamaModel(
                 id: $0.id,
                 status: LlamaModel.Status(rawValue: $0.status?.value ?? ""),
-                source: $0.source
+                source: $0.source,
+                supportsVision: vision.contains($0.id)
             )
         }
     }

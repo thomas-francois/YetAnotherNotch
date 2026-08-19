@@ -9,6 +9,7 @@
 import Combine
 import Defaults
 import SwiftUI
+import UniformTypeIdentifiers
 import SwiftUIIntrospect
 
 @MainActor
@@ -18,6 +19,7 @@ struct ContentView: View {
     @ObservedObject var coordinator = CustomViewCoordinator.shared
     @ObservedObject var musicManager = MusicManager.shared
     @ObservedObject var timer = UtilityTimerStore.shared
+    @ObservedObject var models = ModelStore.shared
     @ObservedObject var aiShortcuts = PromptShortcutStore.shared
     @ObservedObject var aiChat = ChatStore.shared
     @State private var hoverTask: Task<Void, Never>?
@@ -61,6 +63,29 @@ struct ContentView: View {
             && (ClosedNotchActivity.musicIsActive(musicManager, coordinator)
                 || timer.isActive
                 || aiIsWorking)
+    }
+
+    @State private var isDropTargeted = false
+
+    /// Takes the first image from a drop, attaches it to Chat and shows that tab.
+    ///
+    /// Returns true as soon as a provider exists, because the load is async and refusing here
+    /// would make the drag bounce back before the bytes have even been read. A drop that turns
+    /// out not to be an image simply attaches nothing.
+    private func acceptDroppedImage(_ providers: [NSItemProvider]) -> Bool {
+        // Refused outright when the selected model has no vision: better a drag that bounces
+        // back than an attachment that is silently ignored at send time.
+        guard ModelStore.shared.selectionSupportsVision else { return false }
+        guard let provider = providers.first else { return false }
+        Task { @MainActor in
+            guard let attachment = await ChatAttachment.load(from: provider) else { return }
+            ChatStore.shared.attach(attachment)
+            coordinator.selectedTab = .chat
+            if vm.notchState == .closed {
+                withAnimation(CustomViewModel.openAnimation) { vm.open(on: .chat) }
+            }
+        }
+        return true
     }
 
     private var computedChinWidth: CGFloat {
@@ -124,6 +149,21 @@ struct ContentView: View {
                             .animation(vm.notchState == .open ? openAnimation : closeAnimation, value: vm.notchState)
                     }
                     .contentShape(Rectangle())
+                    // Drop an image here to ask about it. Registered on the same region that
+                    // already handles hover, so the target is exactly the visible notch.
+                    .onDrop(
+                        of: [.image, .fileURL],
+                        isTargeted: models.selectionSupportsVision ? $isDropTargeted : .constant(false)
+                    ) { providers in
+                        acceptDroppedImage(providers)
+                    }
+                    .overlay {
+                        if isDropTargeted {
+                            RoundedRectangle(cornerRadius: topCornerRadius)
+                                .strokeBorder(Color.effectiveAccent, lineWidth: 2)
+                                .allowsHitTesting(false)
+                        }
+                    }
                     .onHover { hovering in
                         handleHover(hovering)
                     }

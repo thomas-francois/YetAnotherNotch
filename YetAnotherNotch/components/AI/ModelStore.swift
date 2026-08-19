@@ -56,6 +56,12 @@ final class ModelStore: ObservableObject {
 
     /// Everything a request needs: a reachable server, a selected model that is still
     /// listed, and that model not being mid-download.
+    /// Whether the selected model can be sent images. False with no selection, so the drop
+    /// target stays closed rather than accepting something nothing can read.
+    var selectionSupportsVision: Bool {
+        isReachable && selectedModel?.supportsVision == true
+    }
+
     var hasUsableSelection: Bool {
         isReachable && (selectedModel?.isReady ?? false)
     }
