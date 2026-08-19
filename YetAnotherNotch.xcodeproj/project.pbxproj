@@ -71,7 +71,10 @@
 		507266DB2C908E2E00A2D00D /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507266DA2C908E2E00A2D00D /* HoverButton.swift */; };
 		52554AE82CD50B415DAC689C /* ChatMarkdownText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ADD42430A257585484324 /* ChatMarkdownText.swift */; };
 		5955950D2E900ED800C66711 /* ApplicationRelauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5955950C2E900ED800C66711 /* ApplicationRelauncher.swift */; };
+		5E80090CFA2FFBD00476099E /* BrightnessWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47C7CD96DA0C0570C8C9032 /* BrightnessWidgetView.swift */; };
+		5F53924FCD7630BD563F92F6 /* DimmingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7FD27F992789FB749EAEF9 /* DimmingOverlay.swift */; };
 		5FC96F65564F7E813F29771F /* NotchTabPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB423BC43332E40F33E8701E /* NotchTabPlaceholder.swift */; };
+		625C9B4FCFB8EA5A20CA4364 /* ExternalDisplayStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AC51ACEC7D93517ECB2602 /* ExternalDisplayStore.swift */; };
 		66556CC7271E4B1B975ABBF1 /* NotchTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB38589BF91197C741EE9F2 /* NotchTab.swift */; };
 		690F0D5BA3B2DF3D422357A2 /* LaunchableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4430F08AB2D0C5F1287D7 /* LaunchableApp.swift */; };
 		7433D9916B87852F7588C5FA /* AppLauncherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB20BE17E67C0052C039FA8 /* AppLauncherStore.swift */; };
@@ -178,6 +181,7 @@
 		2F92C66713C85D4186BFDD7E /* TranscriptionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TranscriptionView.swift; path = YetAnotherNotch/components/Transcription/TranscriptionView.swift; sourceTree = "<group>"; };
 		350134EBB55FB133DA6ABF0B /* TranscriptionStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TranscriptionStore.swift; path = YetAnotherNotch/components/Transcription/TranscriptionStore.swift; sourceTree = "<group>"; };
 		3C77ED1D4781FCA8FD433DD4 /* ColorPickerStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ColorPickerStore.swift; sourceTree = "<group>"; };
+		3D7FD27F992789FB749EAEF9 /* DimmingOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DimmingOverlay.swift; sourceTree = "<group>"; };
 		46F358BED46DF6077C4DBA6A /* UtilityTimerStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UtilityTimerStore.swift; sourceTree = "<group>"; };
 		480473B49C3175EAE3D49023 /* AISettingsPane.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AISettingsPane.swift; path = YetAnotherNotch/components/AI/AISettingsPane.swift; sourceTree = "<group>"; };
 		507266DA2C908E2E00A2D00D /* HoverButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverButton.swift; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 		B1C448972C972CC4001F0858 /* ListItemPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemPopover.swift; sourceTree = "<group>"; };
 		B1C974332C642B6D0000E707 /* MarqueeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeTextView.swift; sourceTree = "<group>"; };
 		B3C4EA39249A7E06D13A1D34 /* ChatResponder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatResponder.swift; sourceTree = "<group>"; };
+		B47C7CD96DA0C0570C8C9032 /* BrightnessWidgetView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BrightnessWidgetView.swift; sourceTree = "<group>"; };
 		BDE3D9BE45D5AC6C97F70783 /* LlamaClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LlamaClient.swift; path = YetAnotherNotch/components/AI/LlamaClient.swift; sourceTree = "<group>"; };
 		D9232855FF5F0A9210AB509D /* AppLauncherSlots.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppLauncherSlots.swift; sourceTree = "<group>"; };
 		DAC01764647C2DF317C4B416 /* ChatStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatStore.swift; sourceTree = "<group>"; };
@@ -218,6 +223,7 @@
 		E746C07F7D2BC24184A4040B /* HexColor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
 		EDB20BE17E67C0052C039FA8 /* AppLauncherStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppLauncherStore.swift; sourceTree = "<group>"; };
 		F150B8BF6CD4D9E007A4DEA6 /* AppLauncherView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppLauncherView.swift; sourceTree = "<group>"; };
+		F5AC51ACEC7D93517ECB2602 /* ExternalDisplayStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExternalDisplayStore.swift; sourceTree = "<group>"; };
 		FF38F214E2FD0A1B840ADA2D /* PromptShortcutsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PromptShortcutsView.swift; path = YetAnotherNotch/components/AI/PromptShortcutsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -524,6 +530,9 @@
 				0EF10453F399D3DD5F8B316D /* TimerWidgetView.swift */,
 				545B1E23A84811687B4CBA46 /* ColorPickerWidgetView.swift */,
 				5FD0E7276BAD79CD1B1BB051 /* UtilitiesView.swift */,
+				F5AC51ACEC7D93517ECB2602 /* ExternalDisplayStore.swift */,
+				B47C7CD96DA0C0570C8C9032 /* BrightnessWidgetView.swift */,
+				3D7FD27F992789FB749EAEF9 /* DimmingOverlay.swift */,
 			);
 			name = Utilities;
 			path = Utilities;
@@ -846,6 +855,9 @@
 				52554AE82CD50B415DAC689C /* ChatMarkdownText.swift in Sources */,
 				1AA8CBF5D4E46551F4783093 /* TranscriptionStore.swift in Sources */,
 				EF47C0E1116A90079FFAE332 /* TranscriptionView.swift in Sources */,
+				625C9B4FCFB8EA5A20CA4364 /* ExternalDisplayStore.swift in Sources */,
+				5E80090CFA2FFBD00476099E /* BrightnessWidgetView.swift in Sources */,
+				5F53924FCD7630BD563F92F6 /* DimmingOverlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
