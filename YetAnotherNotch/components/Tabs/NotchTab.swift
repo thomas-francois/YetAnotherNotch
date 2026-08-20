@@ -19,7 +19,7 @@ enum NotchTab: String, CaseIterable, Identifiable {
     case music
     case appLauncher
     case utilities
-    case terminal
+    case todo
     case ai
     case chat
     case transcription
@@ -36,8 +36,8 @@ enum NotchTab: String, CaseIterable, Identifiable {
             return "square.grid.2x2"
         case .utilities:
             return "wrench.and.screwdriver"
-        case .terminal:
-            return "terminal"
+        case .todo:
+            return "checklist"
         case .ai:
             return "sparkles"
         case .chat:
@@ -56,8 +56,8 @@ enum NotchTab: String, CaseIterable, Identifiable {
             return "App Launcher"
         case .utilities:
             return "Utilities"
-        case .terminal:
-            return "Terminal"
+        case .todo:
+            return "To-Do"
         case .ai:
             return "AI"
         case .chat:

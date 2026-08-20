@@ -28,8 +28,9 @@ struct NotchTabContent: View {
         case .utilities:
             UtilitiesView()
                 .transition(.opacity)
-        case .terminal:
-            placeholder(.terminal)
+        case .todo:
+            TodoWheelView()
+                .transition(.opacity)
         case .ai:
             AIView()
                 .transition(.opacity)
@@ -42,8 +43,4 @@ struct NotchTabContent: View {
         }
     }
 
-    private func placeholder(_ tab: NotchTab) -> some View {
-        NotchTabPlaceholder(tab: tab)
-            .transition(.opacity.combined(with: .scale(scale: 0.96)))
-    }
 }

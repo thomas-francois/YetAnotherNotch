@@ -110,7 +110,9 @@ struct ClosedNotchActivity: View {
                         timer.dismissAlarm()
                     }
                     withAnimation(CustomViewModel.openAnimation) {
-                        vm.open(on: .utilities)
+                        // The To-Do wheel starts this same countdown, so the readout has to open
+                        // whichever tab owns it. Landing in Utilities mid-task was misleading.
+                        vm.open(on: TodoStore.shared.ownsMirroredCountdown ? .todo : .utilities)
                     }
                 }
         } else if aiIsWorking {
