@@ -111,6 +111,20 @@ final class UtilityTimerStore: ObservableObject {
         }
     }
 
+    /// Starts a countdown of an explicit length, leaving `countdownMinutes` alone.
+    ///
+    /// The To-Do wheel imposes its own two-minute box and needs it on screen while the notch is
+    /// closed; writing that through `countdownMinutes` would overwrite the length the user
+    /// configured for their own timer.
+    func startCountdown(seconds: TimeInterval) {
+        reset()
+        mode = .countdown
+        value = seconds
+        countdownEnd = Date().addingTimeInterval(seconds)
+        state = .running
+        startTicker()
+    }
+
     func pause() {
         guard state == .running else { return }
         // Fold progress into the anchors so resuming continues from here.

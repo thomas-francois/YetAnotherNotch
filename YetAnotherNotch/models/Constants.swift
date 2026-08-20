@@ -136,6 +136,9 @@ extension Defaults.Keys {
         "promptShortcuts",
         default: PromptShortcutSlots.seeded
     )
+    // MARK: To-Do
+    static let todoItems = Key<[TodoItem]>("todoItems", default: [])
+
     /// The command the AI tab offers to copy when no server is answering. Editable because
     /// every setup has a different model path and flags, and a command you can paste
     /// verbatim beats a generic example you have to translate.

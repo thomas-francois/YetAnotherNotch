@@ -72,9 +72,10 @@
 		507266DB2C908E2E00A2D00D /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507266DA2C908E2E00A2D00D /* HoverButton.swift */; };
 		52554AE82CD50B415DAC689C /* ChatMarkdownText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ADD42430A257585484324 /* ChatMarkdownText.swift */; };
 		5955950D2E900ED800C66711 /* ApplicationRelauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5955950C2E900ED800C66711 /* ApplicationRelauncher.swift */; };
+		5A8416243858CA0A75347BCC /* TodoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE83BD33744DA5A1EDF0863F /* TodoStore.swift */; };
 		5E80090CFA2FFBD00476099E /* BrightnessWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47C7CD96DA0C0570C8C9032 /* BrightnessWidgetView.swift */; };
 		5F53924FCD7630BD563F92F6 /* DimmingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7FD27F992789FB749EAEF9 /* DimmingOverlay.swift */; };
-		5FC96F65564F7E813F29771F /* NotchTabPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB423BC43332E40F33E8701E /* NotchTabPlaceholder.swift */; };
+		5F7AEE79043A944309AC3E27 /* TodoWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33681E73259CD17FFC50F483 /* TodoWheelView.swift */; };
 		625C9B4FCFB8EA5A20CA4364 /* ExternalDisplayStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AC51ACEC7D93517ECB2602 /* ExternalDisplayStore.swift */; };
 		66556CC7271E4B1B975ABBF1 /* NotchTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB38589BF91197C741EE9F2 /* NotchTab.swift */; };
 		690F0D5BA3B2DF3D422357A2 /* LaunchableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4430F08AB2D0C5F1287D7 /* LaunchableApp.swift */; };
@@ -87,6 +88,7 @@
 		95ABAC76D19C45743CA35CA8 /* PromptShortcutSlots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A421E9625B8511420CE5909 /* PromptShortcutSlots.swift */; };
 		9AB0C6BD2C73C9CB00F7CD30 /* NotchHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0C6BB2C73C9CB00F7CD30 /* NotchHomeView.swift */; };
 		A0385A6A9C83A70F511021FA /* NotchTabLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19353B8C4FFEAB7888B1136 /* NotchTabLayout.swift */; };
+		A92530A167656DF7307C6766 /* NotchKeyFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA1C78E6B41C884D47154AF /* NotchKeyFocus.swift */; };
 		AE21573D77F65DBB0123835A /* AppLauncherSlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04B4EF4A14C401EAFC8B116 /* AppLauncherSlotView.swift */; };
 		AEBA577D4AAF3C6D08A78C7E /* AppLauncherSlots.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9232855FF5F0A9210AB509D /* AppLauncherSlots.swift */; };
 		B10348D92C74E56000475897 /* ConditionalModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10348D82C74E56000475897 /* ConditionalModifier.swift */; };
@@ -105,6 +107,7 @@
 		DB9A177ADBFD33F38E9AF824 /* ModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6C89F175E36CEDE18AA3C5 /* ModelStore.swift */; };
 		E120117E00C1A77B3E6A25BC /* TimerWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF10453F399D3DD5F8B316D /* TimerWidgetView.swift */; };
 		E1930DF34E8C173C659C9599 /* LlamaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A3084A685A2CE15463AAA /* LlamaModel.swift */; };
+		E8BC774142A115A576FBACFA /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6C8C04EE80E8BE04F4CC1 /* ConfettiView.swift */; };
 		EF47C0E1116A90079FFAE332 /* TranscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F92C66713C85D4186BFDD7E /* TranscriptionView.swift */; };
 		F504B975FA538B5EECD53E33 /* UtilitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD0E7276BAD79CD1B1BB051 /* UtilitiesView.swift */; };
 		F555D77902C9C3C896A03770 /* ChatStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC01764647C2DF317C4B416 /* ChatStore.swift */; };
@@ -135,6 +138,7 @@
 		0DFF84C46FA100993068441E /* MicrophoneAccess.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MicrophoneAccess.swift; sourceTree = "<group>"; };
 		0E23F7DCA1368578E257AA98 /* PromptShortcutStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PromptShortcutStore.swift; path = YetAnotherNotch/components/AI/PromptShortcutStore.swift; sourceTree = "<group>"; };
 		0EF10453F399D3DD5F8B316D /* TimerWidgetView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TimerWidgetView.swift; sourceTree = "<group>"; };
+		0EF6C8C04EE80E8BE04F4CC1 /* ConfettiView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConfettiView.swift; path = YetAnotherNotch/components/Todo/ConfettiView.swift; sourceTree = "<group>"; };
 		111BEA602ED09B1B0079DD4E /* NSScreen+UUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSScreen+UUID.swift"; sourceTree = "<group>"; };
 		112B0EB32E30DD0F00562D6C /* mediaremote-adapter.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = "mediaremote-adapter.pl"; sourceTree = "<group>"; };
 		112B0EB52E30DD0F00562D6C /* MediaRemoteAdapterTestClient */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = MediaRemoteAdapterTestClient; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 		14FC6E4F2C7DED5600C7BEA5 /* DataTypes+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataTypes+Extensions.swift"; sourceTree = "<group>"; };
 		2A2A3084A685A2CE15463AAA /* LlamaModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LlamaModel.swift; path = YetAnotherNotch/components/AI/LlamaModel.swift; sourceTree = "<group>"; };
 		2F92C66713C85D4186BFDD7E /* TranscriptionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TranscriptionView.swift; path = YetAnotherNotch/components/Transcription/TranscriptionView.swift; sourceTree = "<group>"; };
+		33681E73259CD17FFC50F483 /* TodoWheelView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TodoWheelView.swift; path = YetAnotherNotch/components/Todo/TodoWheelView.swift; sourceTree = "<group>"; };
 		350134EBB55FB133DA6ABF0B /* TranscriptionStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TranscriptionStore.swift; path = YetAnotherNotch/components/Transcription/TranscriptionStore.swift; sourceTree = "<group>"; };
 		3C77ED1D4781FCA8FD433DD4 /* ColorPickerStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ColorPickerStore.swift; sourceTree = "<group>"; };
 		3D7FD27F992789FB749EAEF9 /* DimmingOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DimmingOverlay.swift; sourceTree = "<group>"; };
@@ -210,7 +215,6 @@
 		9B17B48DA985F24A233E4A86 /* ChatTabView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatTabView.swift; sourceTree = "<group>"; };
 		9F7E28509D493CFD9B32751F /* NotchTabBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotchTabBar.swift; sourceTree = "<group>"; };
 		A19353B8C4FFEAB7888B1136 /* NotchTabLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotchTabLayout.swift; sourceTree = "<group>"; };
-		AB423BC43332E40F33E8701E /* NotchTabPlaceholder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotchTabPlaceholder.swift; sourceTree = "<group>"; };
 		AF0139A515107FD50820D87B /* ChatAttachment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatAttachment.swift; sourceTree = "<group>"; };
 		B04B4EF4A14C401EAFC8B116 /* AppLauncherSlotView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppLauncherSlotView.swift; sourceTree = "<group>"; };
 		B10348D82C74E56000475897 /* ConditionalModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalModifier.swift; sourceTree = "<group>"; };
@@ -223,11 +227,13 @@
 		B47C7CD96DA0C0570C8C9032 /* BrightnessWidgetView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BrightnessWidgetView.swift; sourceTree = "<group>"; };
 		BD523A295ABE61C415166238 /* ShazamStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShazamStore.swift; sourceTree = "<group>"; };
 		BDE3D9BE45D5AC6C97F70783 /* LlamaClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LlamaClient.swift; path = YetAnotherNotch/components/AI/LlamaClient.swift; sourceTree = "<group>"; };
+		CDA1C78E6B41C884D47154AF /* NotchKeyFocus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotchKeyFocus.swift; sourceTree = "<group>"; };
 		D9232855FF5F0A9210AB509D /* AppLauncherSlots.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppLauncherSlots.swift; sourceTree = "<group>"; };
 		DAC01764647C2DF317C4B416 /* ChatStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatStore.swift; sourceTree = "<group>"; };
 		E1EA1C7F471991975A920836 /* AIView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AIView.swift; path = YetAnotherNotch/components/AI/AIView.swift; sourceTree = "<group>"; };
 		E746C07F7D2BC24184A4040B /* HexColor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
 		EDB20BE17E67C0052C039FA8 /* AppLauncherStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppLauncherStore.swift; sourceTree = "<group>"; };
+		EE83BD33744DA5A1EDF0863F /* TodoStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TodoStore.swift; path = YetAnotherNotch/components/Todo/TodoStore.swift; sourceTree = "<group>"; };
 		F150B8BF6CD4D9E007A4DEA6 /* AppLauncherView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppLauncherView.swift; sourceTree = "<group>"; };
 		F5AC51ACEC7D93517ECB2602 /* ExternalDisplayStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExternalDisplayStore.swift; sourceTree = "<group>"; };
 		FF38F214E2FD0A1B840ADA2D /* PromptShortcutsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PromptShortcutsView.swift; path = YetAnotherNotch/components/AI/PromptShortcutsView.swift; sourceTree = "<group>"; };
@@ -387,6 +393,7 @@
 				A6A0F0C2B725DE14EF2A45DA /* Chat */,
 				42063EEA58CD24557374A4B3 /* AI */,
 				53282A85435889E92A3EEBD6 /* Transcription */,
+				CB6331ABC2E91C86CB0F0ED1 /* Todo */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -575,7 +582,7 @@
 				74715A3AA25691663C4130A6 /* NotchTabButton.swift */,
 				9F7E28509D493CFD9B32751F /* NotchTabBar.swift */,
 				70AFD92E7573803CCC56842A /* NotchTabContent.swift */,
-				AB423BC43332E40F33E8701E /* NotchTabPlaceholder.swift */,
+				CDA1C78E6B41C884D47154AF /* NotchKeyFocus.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -681,6 +688,16 @@
 			);
 			path = Tips;
 			sourceTree = "<group>";
+		};
+		CB6331ABC2E91C86CB0F0ED1 /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				EE83BD33744DA5A1EDF0863F /* TodoStore.swift */,
+				33681E73259CD17FFC50F483 /* TodoWheelView.swift */,
+				0EF6C8C04EE80E8BE04F4CC1 /* ConfettiView.swift */,
+			);
+			name = Todo;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -828,7 +845,6 @@
 				097361E7D7148A2F9690184A /* NotchTabButton.swift in Sources */,
 				15763C5DA0F37A5F74C00759 /* NotchTabBar.swift in Sources */,
 				D7F448C9080A3D71035114A0 /* NotchTabContent.swift in Sources */,
-				5FC96F65564F7E813F29771F /* NotchTabPlaceholder.swift in Sources */,
 				AEBA577D4AAF3C6D08A78C7E /* AppLauncherSlots.swift in Sources */,
 				690F0D5BA3B2DF3D422357A2 /* LaunchableApp.swift in Sources */,
 				7433D9916B87852F7588C5FA /* AppLauncherStore.swift in Sources */,
@@ -870,6 +886,10 @@
 				014E16E50171CF1745299272 /* ChatAttachment.swift in Sources */,
 				FB7C3CD5585AC905C69B01DC /* MicrophoneAccess.swift in Sources */,
 				D24F05C71D581BAF7B28F6A2 /* ShazamStore.swift in Sources */,
+				5A8416243858CA0A75347BCC /* TodoStore.swift in Sources */,
+				5F7AEE79043A944309AC3E27 /* TodoWheelView.swift in Sources */,
+				A92530A167656DF7307C6766 /* NotchKeyFocus.swift in Sources */,
+				E8BC774142A115A576FBACFA /* ConfettiView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

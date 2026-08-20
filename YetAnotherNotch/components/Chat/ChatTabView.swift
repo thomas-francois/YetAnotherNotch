@@ -19,27 +19,10 @@ struct ChatTabView: View {
         content
         .padding(.horizontal, 4)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .notchKeyFocus(fieldFocused: fieldFocused)
         .onAppear {
-            // The notch window refuses key status by default, so a text field would get no
-            // keystrokes. Scoped to this tab — see YetAnotherNotchSkyLightWindow.
-            coordinator.wantsKeyFocus = true
             fieldFocused = true
             Task { await ModelStore.shared.refresh() }
-        }
-        .onDisappear {
-            coordinator.wantsKeyFocus = false
-            coordinator.preventsAutoClose = false
-        }
-        // Held only while the field actually has focus. The reverted Terminal tab held it
-        // for as long as its tab was selected, which is what left the notch sitting open.
-        .onChange(of: fieldFocused) { _, focused in
-            coordinator.preventsAutoClose = focused
-        }
-        // Clicking into another app closes the notch, so it can never get stuck open.
-        .onReceive(NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification)) { note in
-            guard note.object is YetAnotherNotchSkyLightWindow, vm.notchState == .open else { return }
-            coordinator.preventsAutoClose = false
-            vm.close()
         }
     }
 
