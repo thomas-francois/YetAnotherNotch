@@ -14,11 +14,11 @@ struct MusicSlotConfigurationView: View {
     @ObservedObject private var musicManager = MusicManager.shared
     @State private var draggedSlot: MusicControlButton?
 
-    private let fixedSlotCount: Int = 5
+    /// Follows the model rather than repeating the number.
+    private let fixedSlotCount: Int = MusicControlButton.maxSlotCount
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            // Slot configuration (fixed 5)
             slotConfigurationSection
 
             // Reset button
@@ -120,9 +120,11 @@ struct MusicSlotConfigurationView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
 
-                ScrollView(.horizontal) {
-                    HStack(spacing: 12) {
-                        ForEach(MusicControlButton.pickerOptions, id: \.self) { control in
+                // A wrapping grid, not a horizontal scroller: each tile is 60pt of label plus
+                // spacing, so ten of them overran the settings pane and the last options were
+                // off-screen with no hint they existed.
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 72), spacing: 12)], spacing: 10) {
+                    ForEach(MusicControlButton.pickerOptions, id: \.self) { control in
                             VStack(spacing: 6) {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 8)
@@ -155,12 +157,10 @@ struct MusicSlotConfigurationView: View {
                                     .frame(width: 60)
                                     .multilineTextAlignment(.center)
                                     .lineLimit(2)
-                            }
                         }
                     }
-                    .padding(.vertical, 4)
                 }
-                .scrollIndicators(.visible)
+                .padding(.vertical, 4)
             }
         }
     }

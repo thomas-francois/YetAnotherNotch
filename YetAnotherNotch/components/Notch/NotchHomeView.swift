@@ -115,6 +115,8 @@ struct MusicControlsView: View {
     @State private var sliderValue: Double = 0
     @State private var dragging: Bool = false
     @State private var lastDragged: Date = .distantPast
+    @ObservedObject private var shazam = ShazamStore.shared
+    @State private var shazamJustCopied = false
     @Default(.musicControlSlots) private var slotConfig
     @Default(.musicControlSlotLimit) private var slotLimit
 
@@ -124,6 +126,60 @@ struct MusicControlsView: View {
             slotToolbar
         }
         .buttonStyle(PlainButtonStyle())
+        // A strip rather than a panel: the tab is already full, and the result is transient.
+        .overlay(alignment: .bottom) { shazamResult }
+        .animation(.smooth(duration: 0.2), value: shazam.state)
+        .animation(.smooth(duration: 0.2), value: shazamJustCopied)
+    }
+
+    @ViewBuilder
+    private var shazamResult: some View {
+        switch shazam.state {
+        case .idle, .listening:
+            EmptyView()
+        case let .matched(match):
+            Button {
+                ShazamStore.shared.copyMatch()
+                flashShazamCopied()
+            } label: {
+                HStack(spacing: 5) {
+                    Image(systemName: shazamJustCopied ? "checkmark" : "shazam.logo")
+                        .font(.system(size: 10))
+                    Text(shazamJustCopied ? "Copied" : match.display)
+                        .font(.caption2)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                }
+                .padding(.horizontal, 7)
+                .padding(.vertical, 3)
+                .background(Capsule().fill(.white.opacity(0.12)))
+                .contentShape(Capsule())
+            }
+            .buttonStyle(PlainButtonStyle())
+            .help("Click to copy \"\(match.display)\" again")
+        case .noMatch:
+            strip("No match", color: .secondary)
+        case let .failed(message):
+            strip(message, color: .orange)
+        }
+    }
+
+    private func flashShazamCopied() {
+        shazamJustCopied = true
+        Task {
+            try? await Task.sleep(for: .seconds(1))
+            shazamJustCopied = false
+        }
+    }
+
+    private func strip(_ text: String, color: Color) -> some View {
+        Text(text)
+            .font(.caption2)
+            .foregroundStyle(color)
+            .lineLimit(2)
+            .padding(.horizontal, 7)
+            .padding(.vertical, 3)
+            .background(Capsule().fill(.white.opacity(0.12)))
     }
 
     private var songInfoAndSlider: some View {
@@ -210,9 +266,13 @@ struct MusicControlsView: View {
     }
 
     private var slotToolbar: some View {
-        let slots = activeSlots
+        // Empty slots are filtered out entirely rather than rendered. They used to be flexible
+        // `Color.clear` spacers, which meant centring depended on having one at each end and any
+        // asymmetric layout drifted sideways. Dropping them lets the row centre itself, so the
+        // buttons stay centred whether there are three of them or seven.
+        let visible = activeSlots.enumerated().filter { $0.element != .none }
         return HStack(spacing: 6) {
-            ForEach(Array(slots.enumerated()), id: \.offset) { index, slot in
+            ForEach(visible, id: \.offset) { _, slot in
                 slotView(for: slot)
                     .frame(alignment: .center)
             }
@@ -260,12 +320,22 @@ struct MusicControlsView: View {
             HoverButton(icon: "gobackward.15", scale: .medium) {
                 MusicManager.shared.skip(seconds: -15)
             }
+        case .identify:
+            HoverButton(
+                icon: shazam.isListening ? "waveform" : "shazam.logo",
+                iconColor: shazam.isListening ? .red : .primary,
+                scale: .medium
+            ) {
+                Task { await ShazamStore.shared.identify() }
+            }
+            .help(shazam.isListening ? "Listening… click to stop" : "Identify the music playing")
         case .goForward:
             HoverButton(icon: "goforward.15", scale: .medium) {
                 MusicManager.shared.skip(seconds: 15)
             }
         case .none:
-            Color.clear.frame(height: 1)
+            // Unreachable: `slotToolbar` filters these out. Kept for exhaustiveness.
+            EmptyView()
         }
     }
 
