@@ -78,8 +78,8 @@ final class TranscriptionStore: ObservableObject {
         guard !isRecording, !isPreparing else { return }
         state = .preparing
 
-        guard await Self.microphoneIsAuthorized() else {
-            state = .failed("YetAnotherNotch needs the microphone. Enable it in System Settings › Privacy & Security › Microphone.")
+        guard await MicrophoneAccess.isAuthorized() else {
+            state = .failed(MicrophoneAccess.deniedMessage)
             return
         }
 
@@ -227,17 +227,6 @@ final class TranscriptionStore: ObservableObject {
     }
 
     // MARK: - Capabilities
-
-    private static func microphoneIsAuthorized() async -> Bool {
-        switch AVCaptureDevice.authorizationStatus(for: .audio) {
-        case .authorized:
-            return true
-        case .notDetermined:
-            return await AVCaptureDevice.requestAccess(for: .audio)
-        default:
-            return false
-        }
-    }
 
     /// The user's own language when the recogniser supports it, otherwise anything it does —
     /// a transcript in the wrong language beats a tab that refuses to start.
