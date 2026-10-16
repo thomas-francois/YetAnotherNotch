@@ -5,10 +5,7 @@
 
 import AVFoundation
 
-/// The microphone permission check, in one place.
-///
-/// Two features need the mic — live transcription and song identification — and a second copy
-/// of this would be the kind that quietly drifts from the first.
+/// The microphone permission check, used by live transcription.
 enum MicrophoneAccess {
     static func isAuthorized() async -> Bool {
         switch AVCaptureDevice.authorizationStatus(for: .audio) {

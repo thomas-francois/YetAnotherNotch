@@ -128,6 +128,9 @@ class CustomViewModel: NSObject, ObservableObject {
     )
 
     func open() {
+        if notchState == .closed {
+            coordinator.notchWillOpen()
+        }
         self.notchSize = openNotchSize
         self.notchState = .open
 
@@ -140,17 +143,19 @@ class CustomViewModel: NSObject, ObservableObject {
     /// Used by closed-notch indicators that belong to a specific tab — tapping the timer
     /// readout must land on Utilities regardless of which tab was open last.
     func open(on tab: NotchTab) {
-        coordinator.selectedTab = tab
         open()
+        coordinator.selectedTab = tab
     }
 
     func close() {
+        if notchState == .open {
+            coordinator.notchDidClose()
+        }
         self.notchSize = getClosedNotchSize(screenUUID: self.screenUUID)
         self.closedNotchSize = self.notchSize
         self.notchState = .closed
         self.coordinator.sneakPeekVisible = false
-        // Deliberately does NOT reset selectedTab: the notch reopens on whichever tab it
-        // was closed on. Session-scoped, since selectedTab isn't persisted, so a relaunch
-        // starts on .music again.
+        // Deliberately does NOT reset selectedTab: a quick reopen returns to the same tab.
+        // The reset to .music after a long close happens in open(), via notchWillOpen().
     }
 }

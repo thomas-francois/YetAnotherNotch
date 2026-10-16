@@ -85,11 +85,12 @@ class YetAnotherNotchSkyLightWindow: NSPanel {
             .store(in: &observers)
 
         // Only notch content that needs typing asks for key status, so clicking the music
-        // tab never steals focus. Currently just the Chat tab.
-        CustomViewCoordinator.shared.$wantsKeyFocus
+        // tab never steals focus. Only the window on the requesting display responds.
+        CustomViewCoordinator.shared.$keyFocusScreenUUID
             .removeDuplicates()
-            .sink { [weak self] wants in
-                self?.applyKeyFocus(wants)
+            .sink { [weak self] uuid in
+                guard let self else { return }
+                self.applyKeyFocus(uuid != nil && uuid == self.screen?.displayUUID)
             }
             .store(in: &observers)
     }

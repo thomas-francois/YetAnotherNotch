@@ -102,7 +102,6 @@
 		BD402C00AB85DD895718B857 /* ModelSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90328C5F2F83CBC560BC8A36 /* ModelSelectorView.swift */; };
 		BDA91DBAFE65CB3A0FCCFFB0 /* ClosedNotchLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD7CE40D8053CB96C57954 /* ClosedNotchLayout.swift */; };
 		C6B245688BEA76E8D0B41FEB /* ChatMarkdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09865EDD3DCCE1237F0C1EA1 /* ChatMarkdown.swift */; };
-		D24F05C71D581BAF7B28F6A2 /* ShazamStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD523A295ABE61C415166238 /* ShazamStore.swift */; };
 		D7F448C9080A3D71035114A0 /* NotchTabContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AFD92E7573803CCC56842A /* NotchTabContent.swift */; };
 		DB9A177ADBFD33F38E9AF824 /* ModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6C89F175E36CEDE18AA3C5 /* ModelStore.swift */; };
 		E120117E00C1A77B3E6A25BC /* TimerWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF10453F399D3DD5F8B316D /* TimerWidgetView.swift */; };
@@ -225,7 +224,6 @@
 		B1C974332C642B6D0000E707 /* MarqueeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeTextView.swift; sourceTree = "<group>"; };
 		B3C4EA39249A7E06D13A1D34 /* ChatResponder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatResponder.swift; sourceTree = "<group>"; };
 		B47C7CD96DA0C0570C8C9032 /* BrightnessWidgetView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BrightnessWidgetView.swift; sourceTree = "<group>"; };
-		BD523A295ABE61C415166238 /* ShazamStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShazamStore.swift; sourceTree = "<group>"; };
 		BDE3D9BE45D5AC6C97F70783 /* LlamaClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LlamaClient.swift; path = YetAnotherNotch/components/AI/LlamaClient.swift; sourceTree = "<group>"; };
 		CDA1C78E6B41C884D47154AF /* NotchKeyFocus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotchKeyFocus.swift; sourceTree = "<group>"; };
 		D9232855FF5F0A9210AB509D /* AppLauncherSlots.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppLauncherSlots.swift; sourceTree = "<group>"; };
@@ -636,7 +634,6 @@
 			isa = PBXGroup;
 			children = (
 				147163972C5D35B70068B555 /* MusicVisualizer.swift */,
-				BD523A295ABE61C415166238 /* ShazamStore.swift */,
 			);
 			path = Music;
 			sourceTree = "<group>";
@@ -885,7 +882,6 @@
 				5F53924FCD7630BD563F92F6 /* DimmingOverlay.swift in Sources */,
 				014E16E50171CF1745299272 /* ChatAttachment.swift in Sources */,
 				FB7C3CD5585AC905C69B01DC /* MicrophoneAccess.swift in Sources */,
-				D24F05C71D581BAF7B28F6A2 /* ShazamStore.swift in Sources */,
 				5A8416243858CA0A75347BCC /* TodoStore.swift in Sources */,
 				5F7AEE79043A944309AC3E27 /* TodoWheelView.swift in Sources */,
 				A92530A167656DF7307C6766 /* NotchKeyFocus.swift in Sources */,

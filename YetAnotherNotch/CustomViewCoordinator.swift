@@ -18,19 +18,41 @@ class CustomViewCoordinator: ObservableObject {
 
     /// Which tab the open notch is showing, and the tab it will reopen on.
     ///
-    /// `close()` leaves this alone, so the notch returns to whatever you last used. Not
-    /// persisted, which makes that memory session-scoped: a relaunch starts on `.music`.
+    /// `close()` leaves this alone, so a quick reopen returns to whatever you last used; after
+    /// `reopenOnMusicAfter` closed, `notchWillOpen()` puts it back on `.music`. Not persisted,
+    /// so a relaunch starts on `.music` too.
     @Published var selectedTab: NotchTab = .music
+
+    /// How long the notch must stay closed before it reopens on Music instead of the last tab.
+    static let reopenOnMusicAfter: TimeInterval = 120
+
+    /// When the notch last closed; nil while it is open. Shared across displays, like
+    /// `selectedTab` itself.
+    private var lastClosedAt: Date?
+
+    func notchDidClose() {
+        lastClosedAt = Date()
+    }
+
+    func notchWillOpen() {
+        if let closedAt = lastClosedAt, Date().timeIntervalSince(closedAt) > Self.reopenOnMusicAfter {
+            selectedTab = .music
+        }
+        lastClosedAt = nil
+    }
 
     /// Set while a modal panel owned by notch content is on screen (currently the App
     /// Launcher's app picker). Guards only the hover-exit close in `ContentView`, never
     /// `CustomViewModel.close()` — explicit closes must still work.
     @Published var preventsAutoClose: Bool = false
 
-    /// Set by notch content that needs keyboard input (currently only the Chat tab).
+    /// The display whose notch content needs keyboard input (the Chat and To-Do tabs), or nil.
     /// `YetAnotherNotchSkyLightWindow` observes this to allow key status, which it otherwise
     /// refuses so clicks never pull focus from the app underneath.
-    @Published var wantsKeyFocus: Bool = false
+    ///
+    /// A display rather than a flag: with a notch on every display, a shared flag made every
+    /// window grab key status at once, and the one that lost it closed the notch you were using.
+    @Published var keyFocusScreenUUID: String?
 
     // MARK: - Display selection
 
