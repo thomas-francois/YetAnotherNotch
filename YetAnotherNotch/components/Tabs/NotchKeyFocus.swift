@@ -27,16 +27,27 @@ private struct NotchKeyFocusModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .onAppear { coordinator.wantsKeyFocus = true }
+            .onAppear { coordinator.keyFocusScreenUUID = vm.screenUUID }
             .onDisappear {
-                coordinator.wantsKeyFocus = false
+                // Only release our own request; another display may have taken it since.
+                if coordinator.keyFocusScreenUUID == vm.screenUUID {
+                    coordinator.keyFocusScreenUUID = nil
+                }
                 coordinator.preventsAutoClose = false
             }
             .onChange(of: fieldFocused) { _, focused in
                 coordinator.preventsAutoClose = focused
             }
             .onReceive(NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification)) { note in
-                guard note.object is YetAnotherNotchSkyLightWindow, vm.notchState == .open else { return }
+                // Our own window only: another display's notch window resigning is not a reason
+                // to close this one. And only while we still hold the focus request: switching
+                // to another tab releases it first, and the resign that release causes arrives
+                // while this view is still fading out — closing then shut the notch on every
+                // tab switch away from To-Do or Chat.
+                guard let window = note.object as? YetAnotherNotchSkyLightWindow,
+                      window.screen?.displayUUID == vm.screenUUID,
+                      coordinator.keyFocusScreenUUID == vm.screenUUID,
+                      vm.notchState == .open else { return }
                 coordinator.preventsAutoClose = false
                 vm.close()
             }
